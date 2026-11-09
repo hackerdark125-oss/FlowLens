@@ -1,0 +1,14 @@
+services:
+  flowlens:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      FLOWLENS_DB_PATH: /data/flowlens.db
+      FLOWLENS_ANOMALY_MIN_SAMPLES: "5"
+      FLOWLENS_ANOMALY_LATENCY_FACTOR: "2.0"
+    volumes:
+      - flowlens-data:/data
+    restart: unless-stopped
+volumes:
+  flowlens-data:
